@@ -39,12 +39,7 @@ main.cpp
 *.app
 
 ### VisualStudioCode ###
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+.vscode
 
 # Local History for Visual Studio Code
 .history/

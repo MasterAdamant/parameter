@@ -3,27 +3,30 @@
 
 #include <cstring>
 #include <cstdint>
-
 class Parameter {
     private:
         void* ptr;
         size_t size;
         bool isArray;
         
+        void Destructor();
     public:
+
         Parameter() : ptr(nullptr), isArray(false) {}
-
         Parameter(const Parameter& value);
-
+    
         template <typename T>
         Parameter(const T& value) {
+            Destructor();
+
             ptr = new T(value);
             size = sizeof(T);
             isArray = false;
         }
-
         template <typename T, size_t N>
         Parameter(const T (&value)[N]) {
+            Destructor();
+
             T* tptr = new T[N];
             size = sizeof(T) * N;
             isArray = true;
@@ -36,7 +39,6 @@ class Parameter {
         T GetValueAs() const {
             return *(static_cast<T*>(ptr));
         }
-
         template<typename T>
         static T GetValueAs(const Parameter& value){
             return *(static_cast<T*>(value.ptr));

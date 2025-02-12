@@ -1,6 +1,8 @@
 #include "parameter.hpp"
 
 Parameter::Parameter(const Parameter& value) {
+    Destructor();
+
     size = value.size;
     isArray = value.isArray;
 
@@ -18,12 +20,18 @@ Parameter::Parameter(const Parameter& value) {
     }
 }
 
-Parameter::~Parameter() {
+void Parameter::Destructor() {
     if (ptr) {
         if (isArray) {
             delete[] static_cast<int8_t*>(ptr);
         } else {
             delete static_cast<int8_t*>(ptr);
         }
+        size = 0;
+        isArray = false;
     }
+}
+
+Parameter::~Parameter() {
+    Destructor();
 }
