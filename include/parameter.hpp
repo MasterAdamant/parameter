@@ -1,50 +1,71 @@
 #ifndef PARAMETER_HPP
 #define PARAMETER_HPP
 
-#include <cstring>
-#include <cstdint>
+#include <memory>
+#include <typeindex>
+#include <stdexcept>
+#include <string>
+
 class Parameter {
-    private:
-        void* ptr;
-        size_t size;
-        bool isArray;
-        
-        void Destructor();
+private:
+    //Base class to save type info.
+	//Useful for inheritance and polymorphism.
+    struct TypeHolder {
+        std::type_index typeIndex;
+
+        //No reason to create a TypeHolder with no type.
+        TypeHolder() = delete;
+        template<typename Type>
+        TypeHolder() : typeIndex(typeid(Type)) {}
+        TypeHolder(std::type_index typeIndex);
+        TypeHolder(const TypeHolder& value);
+        TypeHolder(TypeHolder&& value) noexcept;
+        virtual ~TypeHolder();
+
+        //Makes class abstract
+		//Will be used for copying data
+        virtual std::unique_ptr<TypeHolder> clone() const = 0;
+        std::type_index getTypeIndex() const;
+    };
+
+	//TypeHolder child for holding values.
+    template <typename Type>
+    class ValueHolder : public TypeHolder {
+        Type value;
+
     public:
+        ValueHolder(const Type& value);
+        ValueHolder(const ValueHolder<Type>& value);
+        ValueHolder(ValueHolder<Type>&& value) noexcept;
+        ~ValueHolder() = default;
 
-        Parameter() : ptr(nullptr), isArray(false) {}
-        Parameter(const Parameter& value);
-    
-        template <typename T>
-        Parameter(const T& value) {
-            Destructor();
+        std::unique_ptr<TypeHolder> clone() const override;
 
-            ptr = new T(value);
-            size = sizeof(T);
-            isArray = false;
-        }
-        template <typename T, size_t N>
-        Parameter(const T (&value)[N]) {
-            Destructor();
+        Type getValue() const;
+    };
 
-            T* tptr = new T[N];
-            size = sizeof(T) * N;
-            isArray = true;
+    std::unique_ptr<TypeHolder> holder;
 
-            std::memcpy(tptr, value, size);
-            ptr = static_cast<void*>(tptr);
-        }
+public:
+    Parameter() = delete;
 
-        template<typename T>
-        T GetValueAs() const {
-            return *(static_cast<T*>(ptr));
-        }
-        template<typename T>
-        static T GetValueAs(const Parameter& value){
-            return *(static_cast<T*>(value.ptr));
-        }
+    template<typename T>
+    Parameter(const T& value);
 
-        ~Parameter();
+    Parameter(const Parameter& value);
+    Parameter(Parameter&& value) noexcept;
+    ~Parameter();
+
+    Parameter& operator=(const Parameter& other);
+    Parameter& operator=(Parameter&& other) noexcept;
+
+    template<typename T>
+    T getValueAs() const;
+
+    template<typename T>
+    T getSafeValueAs() const;
 };
 
-#endif//PARAMETER_HPP
+#include "Parameter.inl"
+
+#endif // PARAMETER_HPP

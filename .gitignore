@@ -1,55 +1,94 @@
-# Created by https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=c++,visualstudiocode
-
-### C++ ###
-# Main
-main.cpp
-
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
+# Compiled object files
 *.obj
+*.o
+*.lo
+*.slo
 
 # Precompiled Headers
 *.gch
 *.pch
 
-# Compiled Dynamic libraries
+# Compiled Dynamic Libraries
+*.dll
 *.so
 *.dylib
-*.dll
 
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
+# Compiled Static Libraries
+*.lib
+*.a
 *.lai
 *.la
-*.a
-*.lib
 
 # Executables
 *.exe
 *.out
 *.app
 
-### VisualStudioCode ###
-.vscode
+# Debug files
+*.pdb
+*.idb
+*.ipdb
+*.iobj
+*.ilk
+*.dbg
 
-# Local History for Visual Studio Code
+# Visual Studio build folders
+[Bb]uild/
+[Bb]in/
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+ARM/
+ARM64/
+
+# Visual Studio project files (generated on build)
+*.tlog
+*.log
+*.vspscc
+*.vssscc
+*.sdf
+*.opensdf
+*.cache
+*.db
+*.VC.db
+
+# Visual Studio IDE and user-specific
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio Code settings
+.vscode/
 .history/
+.ionide/
+*.code-workspace
 
-# Built Visual Studio Code Extensions
-*.vsix
+# CMake and CMake Tools for VS Code
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+CMakeUserPresets.json
 
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
+# NuGet packages
+*.nupkg
+packages/
+*.snupkg
 
-# End of https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode
+# DotCover or Resharper
+.idea/
+*.dotCover
+
+# Backup and autosave
+*~
+*.swp
+*.bak
+
+# Generated files
+*.tmp
+
+# Optional: Ignore inlined template file if generated
+# Parameter.inl (if generated via script)
