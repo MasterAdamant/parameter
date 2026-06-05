@@ -1,94 +1,87 @@
-# Compiled object files
-*.obj
-*.o
-*.lo
+# =========================
+# C++ Objects and Binaries
+# =========================
 *.slo
-
-# Precompiled Headers
+*.lo
+*.o
+*.obj
 *.gch
 *.pch
-
-# Compiled Dynamic Libraries
-*.dll
 *.so
 *.dylib
-
-# Compiled Static Libraries
-*.lib
-*.a
+*.dll
 *.lai
 *.la
-
-# Executables
+*.a
+*.lib
 *.exe
 *.out
 *.app
 
-# Debug files
-*.pdb
-*.idb
-*.ipdb
-*.iobj
-*.ilk
-*.dbg
+# =========================
+# CMake Artifacts
+# =========================
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+CTestTestfile.cmake
+_deps/
 
-# Visual Studio build folders
-[Bb]uild/
-[Bb]in/
-[Dd]ebug/
-[Rr]elease/
-x64/
-x86/
-ARM/
-ARM64/
+# Conventional build folders
+build/
+build-*/
+out/
+bin/
 
-# Visual Studio project files (generated on build)
-*.tlog
-*.log
-*.vspscc
-*.vssscc
-*.sdf
-*.opensdf
-*.cache
-*.db
-*.VC.db
+# =========================
+# Visual Studio Code
+# =========================
+.vscode/*
+*.code-workspace
+.history/
 
-# Visual Studio IDE and user-specific
+# =========================
+# Visual Studio
+# =========================
 .vs/
 *.suo
 *.user
 *.userosscache
 *.sln.docstates
 
-# Visual Studio Code settings
-.vscode/
-.history/
-.ionide/
-*.code-workspace
+# Visual Studio Build Folders
+Debug/
+Release/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 
-# CMake and CMake Tools for VS Code
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Makefile
-CMakeUserPresets.json
+# Visual Studio Debug/Build Artifacts
+*.pdb
+*.idb
+*.ilk
+*.aps
+*.ncb
+*.opendb
+*.dbmdl
+*.vc.db
+*.vc.opendb
 
-# NuGet packages
-*.nupkg
-packages/
-*.snupkg
-
-# DotCover or Resharper
-.idea/
-*.dotCover
-
-# Backup and autosave
-*~
-*.swp
-*.bak
-
-# Generated files
-*.tmp
-
-# Optional: Ignore inlined template file if generated
-# Parameter.inl (if generated via script)
+# =========================
+# OS Generated Files
+# =========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

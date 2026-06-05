@@ -13,8 +13,8 @@ private:
     struct TypeHolder {
         std::type_index typeIndex;
 
-        //No reason to create a TypeHolder with no type.
-        TypeHolder() = delete;
+        
+        TypeHolder() = delete;  //No reason to create a TypeHolder with no type.
         template<typename Type>
         TypeHolder() : typeIndex(typeid(Type)) {}
         TypeHolder(std::type_index typeIndex);
@@ -22,8 +22,6 @@ private:
         TypeHolder(TypeHolder&& value) noexcept;
         virtual ~TypeHolder();
 
-        //Makes class abstract
-		//Will be used for copying data
         virtual std::unique_ptr<TypeHolder> clone() const = 0;
         std::type_index getTypeIndex() const;
     };
@@ -66,6 +64,6 @@ public:
     T getSafeValueAs() const;
 };
 
-#include "Parameter.inl"
+#include "parameter.inl"
 
 #endif // PARAMETER_HPP
